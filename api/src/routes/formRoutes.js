@@ -464,7 +464,7 @@ router.post("/submit", async (req, res) => {
 
 router.get("/quotation/:quotationId", async (req, res) => {
   try {
-    const quotation = await Quotation.findById(req.params.quotationId);
+    const quotation = await Quotation.findById(req.params.quotationId).populate("formId");
     if (!quotation) {
       return res.status(404).json({ error: "Quotation not found" });
     }
@@ -528,19 +528,24 @@ router.post("/addCustomOption", (req, res) => {
 });
 router.post("/contact-us", async (req, res) => {
   try {
-    // Check if the email already exists
-    const existingContact = await ContactForm.findOne({ email: req.body.email });
-    if (existingContact) {
-      return res.status(400).json({
-        message: "We already have your data. We'll reach out to you soon!",
-      });
+    const { email, type } = req.body;
+
+    // Check if the email already exists and the type is "get in touch"
+    if (type === "Get In Touch") {
+      const existingContact = await ContactForm.findOne({ email });
+      if (existingContact) {
+        return res.status(400).json({
+          message: "We already have your data. We'll reach out to you soon!",
+        });
+      }
     }
 
+    // Create a new contact entry
     const formData = new ContactForm(req.body);
     await formData.save();
 
     try {
-      // Append to sheet
+      // Append to the sheet
       console.log("Appending to sheet...");
       await appendToContactSheet(req.body);
       console.log("Successfully appended to sheet");
@@ -550,7 +555,7 @@ router.post("/contact-us", async (req, res) => {
         formId: formData._id,
       });
     } catch (error) {
-      console.error("Error in generation sheet append:", error);
+      console.error("Error in sheet append:", error);
       throw error;
     }
   } catch (error) {

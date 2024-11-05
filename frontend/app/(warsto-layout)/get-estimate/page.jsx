@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 // import logo from "@/public/images/warsto-logo.png";
 import {
@@ -31,19 +31,26 @@ import {
 } from "lucide-react";
 import tvUnitImg from "@/public/images/tv-unit.png";
 import sofaImg from "@/public/images/sofa.png";
-import crockeryUnitImg from "@/public/images/crokery-unit.png";
+import crockeryUnitImg from "@/public/images/crockery.png";
 import shoeImg from "@/public/images/shoe.png";
-import consoleTableImg from "@/public/images/console-table.png";
-import kitchenImg from "@/public/images/kitchen.png";
-import gkitchenImg from "@/public/images/gkitchen.png";
-import lkitchenImg from "@/public/images/minus.png";
-import parallelImg from "@/public/images/parallel.png";
-import thinLineImg from "@/public/images/thin-line.png";
-import wardrobeImg from "@/public/images/closet.png";
-import bedImg from "@/public/images/double-bed.png";
+import consoleTableImg from "@/public/images/console.png";
+import ukitchenImg from "@/public/images/U.png";
+import gkitchenImg from "@/public/images/G-shape.png";
+import lkitchenImg from "@/public/images/L-shape.png";
+import parallelkitchenImg from "@/public/images/parallelkitchen.png";
+import iplatformkitchen from "@/public/images/Iplatform.png";
+import wardrobeImg from "@/public/images/Wardrobe.png";
+import bedImg from "@/public/images/bed.png";
 import dresserImg from "@/public/images/dresser.png";
-import ceilingImg from "@/public/images/ceiling.png";
-import pipe from "@/public/images/pipe.png";
+import Basicceiling from "@/public/images/Basicceiling.png";
+import peripheralceiling from "@/public/images/peripheralceiling.png";
+import customceiling from "@/public/images/customceiling.png";
+import firepipeboxing from "@/public/images/sprinkler.png";
+import WardrobeLoft from "@/public/images/WardrobeLoft.png";
+import sidetable from "@/public/images/side-table.png";
+import Study from "@/public/images/studytable.png";
+import Vanity from "@/public/images/vanity.png";
+
 import Script from "next/script";
 import Link from "next/link";
 import Image from "next/image";
@@ -84,7 +91,6 @@ export default function MultiStepForm() {
   });
   const [selectedKeys, setSelectedKeys] = useState(new Set([]));
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const inputRef = useRef(null);
   const [expandedRooms, setExpandedRooms] = useState({});
   const [formData, setFormData] = useState({
     name: "",
@@ -170,12 +176,6 @@ export default function MultiStepForm() {
     }
   }, []);
 
-  useEffect(() => {
-    if (isOpen && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [isOpen]);
-
   const optionImages = {
     LivingRoom: {
       "TV Unit": tvUnitImg,
@@ -186,36 +186,47 @@ export default function MultiStepForm() {
     },
     Kitchen: {
       "L Shape": lkitchenImg,
-      "U Shape": gkitchenImg,
+      "U Shape": ukitchenImg,
       "G Shape": gkitchenImg,
-      "|| Shape": parallelImg,
-      "| Shape": thinLineImg,
+      "|| Shape": parallelkitchenImg,
+      "| Shape": iplatformkitchen,
     },
     MasterBedroom: {
       Wardrobe: wardrobeImg,
+      "Lofts on Wardrobe": WardrobeLoft,
+      "Bed Side Tables": sidetable,
+      Study: Study,
       Bed: bedImg,
       Dresser: dresserImg,
+      Vanity: Vanity,
     },
     MasterBedroom2: {
       Wardrobe: wardrobeImg,
+      "Lofts on Wardrobe": WardrobeLoft,
+      "Bed Side Tables": sidetable,
+      Study: Study,
       Bed: bedImg,
       Dresser: dresserImg,
+      Vanity: Vanity,
     },
     CommonBedroom: {
       Wardrobe: wardrobeImg,
+      "Lofts on Wardrobe": WardrobeLoft,
+      "Bed Side Tables": sidetable,
+      Study: Study,
       Bed: bedImg,
       Dresser: dresserImg,
     },
     FalseCeilingElectrical: {
-      "Fire pipe Boxin": pipe,
-      Basic: ceilingImg,
-      Peripheral: ceilingImg,
-      "Custom Design": ceilingImg,
+      "Fire pipe Boxing": firepipeboxing,
+      Basic: Basicceiling,
+      Peripheral: peripheralceiling,
+      "Custom Design": customceiling,
     },
   };
 
   const LoadingSkeleton = () => (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
       {[...Array(6)].map((_, i) => (
         <div key={i} className="animate-pulse">
           <div className="w-full h-32 bg-gray-200 rounded-lg mb-2" />
@@ -281,6 +292,7 @@ export default function MultiStepForm() {
         setIsLoading(false);
       });
   };
+
   const handleOptionChange = (room, option) => {
     setSelectedOptions((prev) => {
       // Special handling for Kitchen and FalseCeilingElectrical
@@ -424,17 +436,39 @@ export default function MultiStepForm() {
     return Object.keys(newErrors).length === 0;
   };
 
+  const areAllRoomsSelected = () => {
+    // Get all rooms except special sections
+    const normalRooms = Object.keys(formOptions).filter(
+      (room) =>
+        room !== "Services" &&
+        room !== "WholeHousePainting" &&
+        room !== "FalseCeilingElectrical"
+    );
+
+    // Check if each room has at least one selection
+    return normalRooms.every((room) => selectedOptions[room]?.length > 0);
+  };
+
   const isStepComplete = () => {
     if (step === 1) return selectedBHK !== "";
-    if (step === 2)
-      return (
-        Object.values(selectedOptions).some((options) => options?.length > 0) ||
-        carpetArea.trim() !== ""
-      );
+    if (step === 2) {
+      const hasAllRoomSelections = Object.keys(formOptions)
+        .filter(
+          (room) =>
+            room !== "Services" &&
+            room !== "WholeHousePainting" &&
+            room !== "FalseCeilingElectrical"
+        )
+        .every((room) => selectedOptions[room]?.length > 0);
+      const hasCompletedServices =
+        carpetArea.trim() !== "" &&
+        selectedOptions["FalseCeilingElectrical"]?.length > 0;
+
+      return hasAllRoomSelections && hasCompletedServices;
+    }
     return true;
   };
 
-  // In handleSubmit function of page.jsx
   const handleSubmit = async () => {
     if (step === 3) {
       if (!validateStep3()) {
@@ -467,9 +501,7 @@ export default function MultiStepForm() {
         }
 
         if (data.emailType === "thank_you") {
-          // Show thank you message
           setFormSubmitted(true);
-          // You might want to show a different success message here
           return;
         }
         setQuotationId(data.quotationId);
@@ -479,15 +511,6 @@ export default function MultiStepForm() {
         return (
           <SubmissionSummary data={submitData} quotationId={data.quotationId} />
         );
-        // setSelectedBHK("");
-        // setSelectedOptions({});
-        // setCarpetArea("");
-        // setFormData({
-        //   name: "",
-        //   email: "",
-        //   phoneNumber: "",
-        //   propertyName: "",
-        // });
       } catch (error) {
         setErrors({ submit: error.message });
       } finally {
@@ -575,16 +598,6 @@ export default function MultiStepForm() {
           return `${selectedCount}/${totalOptions} selected`;
         };
 
-        const handleSelectionChange = (keys) => {
-          const newKeys = new Set(keys);
-          setSelectedKeys(newKeys);
-          setDefaultExpandedKey(newKeys);
-          const selectedRoom = Array.from(newKeys)[0];
-          if (selectedRoom) {
-            setActiveRoom(selectedRoom);
-          }
-        };
-
         return (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -605,7 +618,7 @@ export default function MultiStepForm() {
                     setActiveRoom(selectedRoom);
                   }
                 }}
-                className="p-0 gap-4"
+                className="gap-4 p-0"
               >
                 {roomEntries.map(([room, options], index) => {
                   if (room === "Services") {
@@ -634,10 +647,7 @@ export default function MultiStepForm() {
                           </div>
                         }
                       >
-                        {/* Services Section */}
-                        {/* Services Section */}
                         <div className="p-4 space-y-6">
-                          {/* Carpet Area Input - Always visible */}
                           <div className="border-b pb-6">
                             <h4 className="font-medium text-lg mb-4">
                               Carpet Area
@@ -654,13 +664,31 @@ export default function MultiStepForm() {
                                 className="max-w-xs"
                                 required
                               />
-                              <p className="text-sm text-gray-600">
-                                Please enter your property's carpet area
-                              </p>
+                              {!carpetArea && (
+                                <motion.div
+                                  initial={{ opacity: 0, y: -10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  exit={{ opacity: 0, y: -10 }}
+                                  className="mt-2 text-sm text-[#ef4665] bg-[#fde8ec] p-3 rounded-lg flex items-center"
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-5 w-5 mr-2"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                  >
+                                    <path
+                                      fillRule="evenodd"
+                                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                      clipRule="evenodd"
+                                    />
+                                  </svg>
+                                  Please enter carpet area
+                                </motion.div>
+                              )}
                             </div>
                           </div>
 
-                          {/* Whole House Painting Section */}
                           <div className="border-b pb-6">
                             <h4 className="font-medium text-lg mb-4">
                               Whole House Painting
@@ -684,18 +712,39 @@ export default function MultiStepForm() {
                               )}
                             </div>
                           </div>
-
-                          {/* False Ceiling & Electrical Section */}
                           <div>
                             <h4 className="font-medium text-lg mb-4">
                               False Ceiling & Electrical
                             </h4>
                             <div className="text-sm text-gray-600 bg-gray-50 p-3 rounded-lg mb-4">
                               <p>
-                                Note: You can select only one option from this
-                                section
+                                Note: Please select one option from this section
                               </p>
                             </div>
+                            {!selectedOptions["FalseCeilingElectrical"]
+                              ?.length && (
+                              <motion.div
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                className="mb-4 text-sm text-[#ef4665] bg-[#fde8ec] p-3 rounded-lg flex items-center"
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="h-5 w-5 mr-2"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                >
+                                  <path
+                                    fillRule="evenodd"
+                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                    clipRule="evenodd"
+                                  />
+                                </svg>
+                                Please select one option for False Ceiling &
+                                Electrical
+                              </motion.div>
+                            )}
                             <div className="grid grid-cols-2  md:grid-cols-4  gap-4">
                               {options.FalseCeilingElectrical?.map((option) => (
                                 <div
@@ -750,7 +799,7 @@ export default function MultiStepForm() {
                                   </Checkbox>
                                 </div>
                               ))}
-                                <div
+                              <div
                                 onClick={() =>
                                   handleOptionChange(
                                     "FalseCeilingElectrical",
@@ -782,15 +831,13 @@ export default function MultiStepForm() {
                     );
                   }
 
-                  // Skip rendering individual WholeHousePainting and FalseCeilingElectrical accordions
                   if (
                     room === "WholeHousePainting" ||
                     room === "FalseCeilingElectrical"
                   ) {
                     return null;
                   }
-
-                  // Regular room handling
+                  const hasSelection = selectedOptions[room]?.length > 0;
                   return (
                     <AccordionItem
                       key={room}
@@ -805,7 +852,7 @@ export default function MultiStepForm() {
                           <div className="flex items-center gap-2">
                             <span
                               className={`text-sm px-3 py-1 rounded-full ${
-                                selectedOptions[room]?.length
+                                hasSelection
                                   ? "bg-[#fde8ec] text-[#ef4665]"
                                   : "bg-gray-100 text-gray-600"
                               }`}
@@ -817,6 +864,28 @@ export default function MultiStepForm() {
                       }
                     >
                       <div className="">
+                        {!selectedOptions[room]?.length && (
+                          <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            className="mb-4 text-sm text-[#ef4665] bg-[#fde8ec] p-3 rounded-lg flex items-center"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5 mr-2"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            Please select at least one option
+                          </motion.div>
+                        )}
                         {(room === "Kitchen" ||
                           room === "FalseCeilingElectrical") && (
                           <div className="mb-4 text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
@@ -827,7 +896,7 @@ export default function MultiStepForm() {
                           </div>
                         )}
 
-                        <div className="grid grid-cols-2  md:grid-cols-4    gap-4">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                           {options
                             .filter((option) => option !== "None")
                             .map((option) => (
@@ -879,9 +948,6 @@ export default function MultiStepForm() {
                                 </label>
                               </div>
                             ))}
-
-                          {/* None option */}
-
                           <div
                             key={`${room}-none`}
                             onClick={() => handleOptionChange(room, "None")}
@@ -900,7 +966,6 @@ export default function MultiStepForm() {
                             </Checkbox>
                           </div>
                         </div>
-
                         {room !== "Kitchen" && (
                           <Button
                             size="sm"
@@ -909,13 +974,12 @@ export default function MultiStepForm() {
                               setCurrentRoom(room);
                               onOpen();
                             }}
-                            className="my-4 bg-[#fde8ec] text-[#ef4665] hover:bg-[#fcd5dd] flex items-center justify-center px-4 py-2 rounded-md"
+                            className="mt-4 bg-[#fde8ec] text-[#ef4665] hover:bg-[#fcd5dd] flex items-center justify-center px-4 py-2 rounded-md"
                           >
                             <Plus className="w-4 h-4 mr-2" />
                             Add Custom Option
                           </Button>
                         )}
-
                         <div className="flex justify-between pt-4 border-t">
                           <Button
                             size="sm"
@@ -956,18 +1020,6 @@ export default function MultiStepForm() {
         );
 
       case 3:
-        const getTotalSelections = () => {
-          return Object.values(selectedOptions).reduce(
-            (total, options) => total + (options?.length || 0),
-            0
-          );
-        };
-
-        // Helper function to format room name
-        const formatRoomName = (name) => {
-          return name.replace(/([A-Z])/g, " $1").trim();
-        };
-
         return (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1043,7 +1095,6 @@ export default function MultiStepForm() {
                 </div>
               </CardBody>
             </Card>
-
             {errors.submit && (
               <div className="bg-red-50 text-red-600 p-3 rounded-lg mt-4">
                 {errors.submit}
@@ -1104,28 +1155,32 @@ export default function MultiStepForm() {
           />
 
           <AnimatePresence mode="wait">{renderStepContent()}</AnimatePresence>
-
-          <div className="flex  justify-between mt-8">
-            <button
+          <div className="flex justify-between mt-8">
+            <Button
               onClick={prevStep}
               disabled={step === 1}
-              className={`px-6 flex items-center justify-center py-2 rounded-md ${
+              className={`px-6 py-2 rounded-md ${
                 step === 1
                   ? "bg-gray-200 text-gray-400 cursor-not-allowed"
                   : "bg-gray-200 text-gray-800 hover:bg-gray-300"
               }`}
             >
-              <ChevronLeft className="w-5  h-5 mr-1" />
+              <ChevronLeft className="w-5 h-5 mr-1" />
               Back
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={handleSubmit}
               disabled={!isStepComplete() || isSubmitting}
-              className={`px-6 flex items-center py-2 justify-center  rounded-md ${
+              className={`px-6 py-2 rounded-md ${
                 !isStepComplete() || isSubmitting
                   ? "bg-gray-200 text-gray-400 cursor-not-allowed"
                   : "bg-[#ef4665] text-white hover:bg-[#dc4060]"
               }`}
+              title={
+                step === 2 && !isStepComplete()
+                  ? "Please select at least one option for each room and complete the Services section"
+                  : ""
+              }
             >
               {isSubmitting ? (
                 "Processing..."
@@ -1135,7 +1190,7 @@ export default function MultiStepForm() {
                   {step !== 3 && <ChevronRight className="w-5 h-5 ml-1" />}
                 </>
               )}
-            </button>
+            </Button>
           </div>
         </div>
       </main>
@@ -1150,16 +1205,26 @@ export default function MultiStepForm() {
           quotationId={quotationId}
         />
       )}
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal
+        isOpen={isOpen}
+        onClose={() => {
+          onClose();
+          if (modalOpenedRoom) {
+            setSelectedKeys(new Set([modalOpenedRoom]));
+            setActiveRoom(modalOpenedRoom);
+          }
+        }}
+      >
         <ModalContent>
           <ModalBody>
             <h3 className="flex text-xl my-2 font-bold  flex-col gap-1">
-              Add Custom Option for {currentRoom}
+              Add Custom Option for{" "}
+              {currentRoom.replace(/([A-Z])/g, " $1").trim()}
             </h3>
+
             <Input
               label="Custom Option"
               placeholder="Enter custom option"
-              ref={inputRef}
               value={newOption}
               onChange={(e) => setNewOption(e.target.value)}
               isInvalid={!!errors.addOption}

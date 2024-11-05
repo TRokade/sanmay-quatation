@@ -12,21 +12,27 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import tvUnitImg from "../../../public/images/tv-unit.png";
-import sofaImg from "../../../public/images/sofa.png";
-import crockeryUnitImg from "../../../public/images/crokery-unit.png";
-import shoeImg from "../../../public/images/shoe.png";
-import consoleTableImg from "../../../public/images/console-table.png";
-import kitchenImg from "../../../public/images/kitchen.png";
-import gkitchenImg from "../../../public/images/gkitchen.png";
-import lkitchenImg from "../../../public/images/minus.png";
-import parallelImg from "../../../public/images/parallel.png";
-import thinLineImg from "../../../public/images/thin-line.png";
-import wardrobeImg from "../../../public/images/closet.png";
-import bedImg from "../../../public/images/double-bed.png";
-import dresserImg from "../../../public/images/dresser.png";
-import ceilingImg from "../../../public/images/ceiling.png";
-import pipe from "../../../public/images/pipe.png";
+import tvUnitImg from "@/public/images/tv-unit.png";
+import sofaImg from "@/public/images/sofa.png";
+import crockeryUnitImg from "@/public/images/crockery.png";
+import shoeImg from "@/public/images/shoe.png";
+import consoleTableImg from "@/public/images/console.png";
+import ukitchenImg from "@/public/images/U.png";
+import gkitchenImg from "@/public/images/G-shape.png";
+import lkitchenImg from "@/public/images/L-shape.png";
+import parallelkitchenImg from "@/public/images/parallelkitchen.png";
+import iplatformkitchen from "@/public/images/Iplatform.png";
+import wardrobeImg from "@/public/images/Wardrobe.png";
+import bedImg from "@/public/images/bed.png";
+import dresserImg from "@/public/images/dresser.png";
+import Basicceiling from "@/public/images/Basicceiling.png";
+import peripheralceiling from "@/public/images/peripheralceiling.png";
+import customceiling from "@/public/images/customceiling.png";
+import firepipeboxing from "@/public/images/sprinkler.png";
+import WardrobeLoft from "@/public/images/WardrobeLoft.png";
+import sidetable from "@/public/images/side-table.png";
+import Study from "@/public/images/studytable.png";
+import Vanity from "@/public/images/vanity.png";
 import warsto from "@/public/images/warsto-logo.png";
 const optionImages = {
   LivingRoom: {
@@ -38,31 +44,42 @@ const optionImages = {
   },
   Kitchen: {
     "L Shape": lkitchenImg,
-    "U Shape": gkitchenImg,
+    "U Shape": ukitchenImg,
     "G Shape": gkitchenImg,
-    "|| Shape": parallelImg,
-    "| Shape": thinLineImg,
+    "|| Shape": parallelkitchenImg,
+    "| Shape": iplatformkitchen,
   },
   MasterBedroom: {
     Wardrobe: wardrobeImg,
+    "Lofts on Wardrobe": WardrobeLoft,
+    "Bed Side Tables": sidetable,
+    Study: Study,
     Bed: bedImg,
     Dresser: dresserImg,
+    Vanity: Vanity,
   },
   MasterBedroom2: {
     Wardrobe: wardrobeImg,
+    "Lofts on Wardrobe": WardrobeLoft,
+    "Bed Side Tables": sidetable,
+    Study: Study,
     Bed: bedImg,
     Dresser: dresserImg,
+    Vanity: Vanity,
   },
   CommonBedroom: {
     Wardrobe: wardrobeImg,
+    "Lofts on Wardrobe": WardrobeLoft,
+    "Bed Side Tables": sidetable,
+    Study: Study,
     Bed: bedImg,
     Dresser: dresserImg,
   },
   FalseCeilingElectrical: {
-    "Fire pipe Boxin": pipe,
-    Basic: ceilingImg,
-    Peripheral: ceilingImg,
-    "Custom Design": ceilingImg,
+    "Fire pipe Boxing": firepipeboxing,
+    Basic: Basicceiling,
+    Peripheral: peripheralceiling,
+    "Custom Design": customceiling,
   },
 };
 
