@@ -696,7 +696,7 @@ export default function MultiStepForm() {
                                 section
                               </p>
                             </div>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-2  md:grid-cols-4  gap-4">
                               {options.FalseCeilingElectrical?.map((option) => (
                                 <div
                                   key={option}
@@ -827,7 +827,7 @@ export default function MultiStepForm() {
                           </div>
                         )}
 
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-2  md:grid-cols-4    gap-4">
                           {options
                             .filter((option) => option !== "None")
                             .map((option) => (
