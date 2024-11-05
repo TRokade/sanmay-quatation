@@ -281,14 +281,29 @@ export default function MultiStepForm() {
         setIsLoading(false);
       });
   };
-
   const handleOptionChange = (room, option) => {
     setSelectedOptions((prev) => {
-      if (room === "Kitchen") {
+      // Special handling for Kitchen and FalseCeilingElectrical
+      if (room === "Kitchen" || room === "FalseCeilingElectrical") {
+        // If clicking the currently selected option, deselect it
         if (prev[room]?.[0] === option) {
           return {
             ...prev,
             [room]: [],
+          };
+        }
+        // If clicking "None", clear other selections
+        if (option === "None") {
+          return {
+            ...prev,
+            [room]: ["None"],
+          };
+        }
+        // If "None" is currently selected and clicking another option, clear "None"
+        if (prev[room]?.includes("None")) {
+          return {
+            ...prev,
+            [room]: [option],
           };
         }
         // Otherwise, select the new option
@@ -298,19 +313,7 @@ export default function MultiStepForm() {
         };
       }
 
-      if (room === "FalseCeilingElectrical") {
-        if (prev[room]?.[0] === option) {
-          return {
-            ...prev,
-            [room]: [],
-          };
-        }
-        // Otherwise, select the new option
-        return {
-          ...prev,
-          [room]: [option],
-        };
-      }
+      // Regular room handling
       if (option === "None") {
         return {
           ...prev,
@@ -318,7 +321,6 @@ export default function MultiStepForm() {
         };
       }
 
-      // If "None" is currently selected and selecting another option
       if (prev[room]?.includes("None")) {
         return {
           ...prev,
@@ -326,7 +328,6 @@ export default function MultiStepForm() {
         };
       }
 
-      // Regular multiple selection behavior
       const roomOptions = prev[room] || [];
       const updatedOptions = roomOptions.includes(option)
         ? roomOptions.filter((opt) => opt !== option)
@@ -696,37 +697,7 @@ export default function MultiStepForm() {
                               </p>
                             </div>
                             <div className="grid grid-cols-2 gap-4">
-                              {/* None option for False Ceiling */}
-                              <div
-                                onClick={() =>
-                                  handleOptionChange(
-                                    "FalseCeilingElectrical",
-                                    "None"
-                                  )
-                                }
-                                className={`cursor-pointer p-4 rounded-lg border transition-all ${
-                                  selectedOptions[
-                                    "FalseCeilingElectrical"
-                                  ]?.[0] === "None"
-                                    ? "border-gray-500 bg-gray-50"
-                                    : "border-gray-200 hover:border-gray-300"
-                                }`}
-                              >
-                                <Checkbox
-                                  isSelected={
-                                    selectedOptions[
-                                      "FalseCeilingElectrical"
-                                    ]?.[0] === "None"
-                                  }
-                                >
-                                  None
-                                </Checkbox>
-                              </div>
-
-                              {/* Regular False Ceiling options */}
-                              {options.FalseCeilingElectrical?.filter(
-                                (option) => option !== "None"
-                              ).map((option) => (
+                              {options.FalseCeilingElectrical?.map((option) => (
                                 <div
                                   key={option}
                                   onClick={() =>
@@ -740,6 +711,10 @@ export default function MultiStepForm() {
                                       "FalseCeilingElectrical"
                                     ]?.[0] === option
                                       ? "border-[#ef4665] bg-[#ef466515] text-black"
+                                      : selectedOptions[
+                                          "FalseCeilingElectrical"
+                                        ]?.includes("None")
+                                      ? "border-gray-200 bg-gray-100 opacity-50 pointer-events-none"
                                       : "border-gray-300 hover:border-[#ef4665]"
                                   }`}
                                 >
@@ -765,11 +740,41 @@ export default function MultiStepForm() {
                                         "FalseCeilingElectrical"
                                       ]?.[0] === option
                                     }
+                                    isDisabled={
+                                      selectedOptions[
+                                        "FalseCeilingElectrical"
+                                      ]?.includes("None") && option !== "None"
+                                    }
                                   >
                                     {option}
                                   </Checkbox>
                                 </div>
                               ))}
+                                <div
+                                onClick={() =>
+                                  handleOptionChange(
+                                    "FalseCeilingElectrical",
+                                    "None"
+                                  )
+                                }
+                                className={`cursor-pointer p-4 rounded-lg border transition-all ${
+                                  selectedOptions[
+                                    "FalseCeilingElectrical"
+                                  ]?.[0] === "None"
+                                    ? "border-gray-500 bg-gray-50"
+                                    : "border-gray-200 hover:border-gray-300"
+                                }`}
+                              >
+                                <Checkbox
+                                  isSelected={
+                                    selectedOptions[
+                                      "FalseCeilingElectrical"
+                                    ]?.[0] === "None"
+                                  }
+                                >
+                                  None
+                                </Checkbox>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -823,8 +828,6 @@ export default function MultiStepForm() {
                         )}
 
                         <div className="grid grid-cols-2 gap-4">
-                          
-
                           {options
                             .filter((option) => option !== "None")
                             .map((option) => (
@@ -877,7 +880,7 @@ export default function MultiStepForm() {
                               </div>
                             ))}
 
-                            {/* None option */}
+                          {/* None option */}
 
                           <div
                             key={`${room}-none`}
