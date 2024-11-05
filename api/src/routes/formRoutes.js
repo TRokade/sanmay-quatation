@@ -528,6 +528,14 @@ router.post("/addCustomOption", (req, res) => {
 });
 router.post("/contact-us", async (req, res) => {
   try {
+    // Check if the email already exists
+    const existingContact = await ContactForm.findOne({ email: req.body.email });
+    if (existingContact) {
+      return res.status(400).json({
+        message: "We already have your data. We'll reach out to you soon!",
+      });
+    }
+
     const formData = new ContactForm(req.body);
     await formData.save();
 
@@ -538,7 +546,7 @@ router.post("/contact-us", async (req, res) => {
       console.log("Successfully appended to sheet");
 
       res.status(201).json({
-        message: "Form submitted successfully",
+        message: "Form submitted successfully. We will reach out to you soon!",
         formId: formData._id,
       });
     } catch (error) {
