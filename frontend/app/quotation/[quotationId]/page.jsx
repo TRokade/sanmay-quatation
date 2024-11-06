@@ -396,11 +396,11 @@ export default function QuotationPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 mt-20 py-8 px-4">
+    <div className="min-h-screen bg-gray-50 pt-24 pb-8 px-4">
       <div className="max-w-7xl mx-auto">
         <Card className="mb-8">
         <CardContent className="p-6">
-            <div className="flex justify-between items-start mb-8">
+            <div className="flex justify-between items-start">
               <div className="flex items-center gap-4">
                 
                 <div>

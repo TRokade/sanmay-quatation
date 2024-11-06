@@ -1,6 +1,0 @@
-MONGODB_URI=mongodb+srv://abhi:abhi@cluster0.fdqdu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-EMAIL_USER=abhishekrai1574@gmail.com
-EMAIL_APP_PASSWORD=sjyr ajen tvyf omug
-FRONTEND_URL=http://localhost:3000
-GOOGLE_CLOUD_PROJECT=quixotic-card-428217-m6
-GOOGLE_APPLICATION_CREDENTIALS=./utils/quixotic-card-428217-m6-991872c2add4.json

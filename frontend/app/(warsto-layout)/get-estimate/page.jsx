@@ -695,6 +695,7 @@ export default function MultiStepForm() {
                             </h4>
                             <div className="space-y-2">
                               <Checkbox
+                              color="danger"
                                 isSelected={wholePaintingSelected}
                                 onValueChange={(selected) => {
                                   setWholePaintingSelected(selected);
@@ -784,6 +785,7 @@ export default function MultiStepForm() {
                                     </div>
                                   )}
                                   <Checkbox
+                                  color="danger"
                                     isSelected={
                                       selectedOptions[
                                         "FalseCeilingElectrical"
@@ -815,6 +817,7 @@ export default function MultiStepForm() {
                                 }`}
                               >
                                 <Checkbox
+                                color="danger"
                                   isSelected={
                                     selectedOptions[
                                       "FalseCeilingElectrical"
@@ -933,6 +936,7 @@ export default function MultiStepForm() {
                                   }}
                                 >
                                   <Checkbox
+                                  color="danger"
                                     isSelected={selectedOptions[room]?.includes(
                                       option
                                     )}
@@ -958,6 +962,7 @@ export default function MultiStepForm() {
                             }`}
                           >
                             <Checkbox
+                            color="danger"
                               isSelected={selectedOptions[room]?.includes(
                                 "None"
                               )}
@@ -974,7 +979,7 @@ export default function MultiStepForm() {
                               setCurrentRoom(room);
                               onOpen();
                             }}
-                            className="mt-4 bg-[#fde8ec] text-[#ef4665] hover:bg-[#fcd5dd] flex items-center justify-center px-4 py-2 rounded-md"
+                            className="my-4 bg-[#fde8ec] text-[#ef4665] hover:bg-[#fcd5dd] flex items-center justify-center px-4 py-2 rounded-md"
                           >
                             <Plus className="w-4 h-4 mr-2" />
                             Add Custom Option
@@ -1114,7 +1119,7 @@ export default function MultiStepForm() {
         strategy="lazyOnload"
       />
       <div className="mt-20 flex justify-between items-center">
-        <div className=" mx-auto px-4 bg-white  md:px-32 shadow-lg py-4 flex flex-col md:flex-row justify-between items-center">
+        <div className="mx-auto px-8 sm:px-4 bg-white  md:px-32 shadow-lg py-4 flex flex-col md:flex-row justify-between items-center">
           <nav className="flex justify-center space-x-4 md:space-x-8 flex-shrink">
             {steps.map((s, index) => (
               <div
@@ -1237,7 +1242,7 @@ export default function MultiStepForm() {
               Cancel
             </Button>
             <Button
-              color="primary"
+            className="bg-[#ef4665] text-white"
               onPress={handleAddOption}
               isLoading={isSubmitting}
             >

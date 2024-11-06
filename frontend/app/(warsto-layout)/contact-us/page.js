@@ -63,21 +63,18 @@ const InquiryForm = () => {
   };
   return (
     <>
-      <section className="bg-gray-100 pt-48">
+      <section className="bg-gray-100 pt-24 lg:pt-48">
         <div className="mx-auto max-w-screen-xl px-4 py-5 pb-16 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
             <div className="lg:col-span-2 lg:py-12">
               <p className="max-w-xl mb-5 text-3xl">Contact Us</p>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Molestiae earum nobis doloremque esse excepturi delectus magnam
-                explicabo ipsam sit officia libero cum dolorum enim voluptatum
-                ipsa, eveniet odio sequi magni.
+              At Warsto, we transform spaces into beautiful, functional designs that reflect your unique style. Whether it’s your home or office, our team is here to bring your vision to life. Contact us today to start creating a space you'll love!
               </p>
 
               <div className="mt-8">
                 <a href="#" className="text-2xl font-bold text-pink-600">
-                  0151 475 4450{" "}
+                  9987448555
                 </a>
 
                 <address className="mt-2 not-italic">
