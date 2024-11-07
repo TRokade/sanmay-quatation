@@ -144,6 +144,7 @@ export default function QuotationPage() {
                   <TableHead className="w-[100px]">Picture</TableHead>
                   <TableHead>Service Type</TableHead>
                   <TableHead>Description</TableHead>
+                  <TableHead>Sizes</TableHead>
                   <TableHead>Area (sq ft)</TableHead>
                   <TableHead className="text-right">Rate (INR/sq ft)</TableHead>
                   <TableHead className="text-right">
@@ -241,6 +242,7 @@ export default function QuotationPage() {
                 <TableHead className="w-[100px]">Picture</TableHead>
                 <TableHead>Name</TableHead>
                 <TableHead>Description</TableHead>
+                <TableHead>Sizes</TableHead>
                 <TableHead>Qty. Unit</TableHead>
                 <TableHead className="text-right">Price (INR)</TableHead>
                 <TableHead className="text-right">Total Price (INR)</TableHead>
@@ -264,8 +266,13 @@ export default function QuotationPage() {
                       <div className="w-16 h-16 bg-gray-100 rounded"></div>
                     )}
                   </TableCell>
-                  <TableCell>{item.item == "Enter Carpet Area" ? "Carpet Area" : item.item }</TableCell>
+                  <TableCell>
+                    {item.item == "Enter Carpet Area"
+                      ? "Carpet Area"
+                      : item.item}
+                  </TableCell>
                   <TableCell>{item.description}</TableCell>
+                  <TableCell>{item.size}</TableCell>
                   <TableCell>{item.isCustom ? "-" : "1"}</TableCell>
                   <TableCell className="text-right">
                     {item.isCustom ? "-" : item.price.toLocaleString("en-IN")}
@@ -276,10 +283,10 @@ export default function QuotationPage() {
                 </TableRow>
               ))}
               <TableRow className="font-medium">
-                <TableCell scolSpan={6} className="text-right">
+                <TableCell align="left" colSpan={7} className="font-bold">
                   Room Total:
                 </TableCell>
-                <TableCell className="text-right">
+                <TableCell align="right" className="font-bold">
                   ₹
                   {roomItems
                     .reduce((sum, item) => sum + (item.price || 0), 0)
@@ -345,6 +352,99 @@ export default function QuotationPage() {
             <p className="text-gray-600">Authorised Signatory</p>
           </div>
         </div>
+        <hr className=" h-1 bg-gray-400"></hr>
+        <div className=" flex mt-4">
+          <div class=" rounded-lg text-gray-800">
+            <h2 class="text-[12px]  font-bold mb-2">
+              *Warsto Terms & Conditions for Price and Validity in the Estimated
+              Quote Calculator
+            </h2>
+            <h3 class="text-[12px] font-semibold ">1. Estimated Pricing</h3>
+            <ul class="  text-[12px]">
+              <li>
+                The prices shown in this calculator are estimates based on the
+                options selected and general market rates. These are not final
+                prices and should be used solely as a preliminary budget guide.
+              </li>
+              <li>
+                Final pricing will be provided upon a detailed review of the
+                design, materials, site-measurements, and customization choices
+                in a formal design consultation with our team.
+              </li>
+            </ul>
+
+            <h3 class="text-[12px] font-semibold ">2. Price Variability</h3>
+            <ul class="  text-[12px]">
+              <li>
+                Prices of materials and components may fluctuate due to market
+                conditions, supply chain changes, or material availability.
+                Therefore, the final price may differ from the estimate provided
+                by this calculator.
+              </li>
+              <li>
+                Additional charges may apply for services not included in the
+                estimate, such as delivery, installation, and taxes.
+              </li>
+            </ul>
+
+            <h3 class="text-[12px] font-semibold ">
+              3. Estimate Validity Period
+            </h3>
+            <ul class="  text-[12px]">
+              <li>
+                This estimate is valid for 15 days from the date it is
+                generated. Pricing, availability, and options may change after
+                this period. If you wish to proceed after this period, we
+                recommend generating a new estimate or consulting with our team
+                to confirm pricing.
+              </li>
+            </ul>
+
+            <h3 class="text-[12px] font-semibold ">
+              4. Limitations of the Estimate
+            </h3>
+            <ul class="  text-[12px]">
+              <li>
+                This calculator offers an estimate based on basic information
+                entered by the user. Complex requirements, bespoke designs, or
+                specific material preferences will require a detailed
+                assessment, which may affect final costs.
+              </li>
+              <li>
+                The estimate does not constitute a final offer or an obligation
+                for Warsto to provide the quoted price until a formal quote has
+                been issued and accepted.
+              </li>
+            </ul>
+
+            <h3 class="text-[12px] font-semibold ">
+              5. Formal Quote Requirement
+            </h3>
+            <ul class="  text-[12px]">
+              <li>
+                To proceed with a purchase, a formal quote will be generated
+                after discussing specific project details. This formal quote
+                will supersede any estimated price provided by the calculator
+                and will include final pricing, payment terms, and any
+                applicable discounts or offers.
+              </li>
+              <li>
+                A minimum purchase value of INR 50,000/- is required to confirm
+                your order with Warsto.
+              </li>
+            </ul>
+
+            <h3 class="text-[12px] font-semibold ">6. Acceptance of Terms</h3>
+            <ul class="  text-[12px]">
+              <li>
+                By using this calculator, you acknowledge that the estimate
+                provided is for guidance only and that the final price may vary.
+                For a binding price, a formal quotation and contract must be
+                issued by Warsto.
+              </li>
+            </ul>
+          </div>
+        </div>
       </CardContent>
     </Card>
   );
@@ -399,19 +499,18 @@ export default function QuotationPage() {
     <div className="min-h-screen bg-gray-50 pt-24 pb-8 px-4">
       <div className="max-w-7xl mx-auto">
         <Card className="mb-8">
-        <CardContent className="p-6">
+          <CardContent className="p-6">
             <div className="flex justify-between items-start">
-              <div className="flex items-center gap-4">
-                
+              <div className="flex items-center gap-4 text-sm">
                 <div>
                   {/* <h1 className="text-2xl font-bold mb-2">Warsto</h1> */}
                   <Image
-                  src={warsto}
-                  alt="Warsto Logo"
-                  className="py-4"
-                  width={150}
-                  height={150}
-                />
+                    src={warsto}
+                    alt="Warsto Logo"
+                    className="py-4"
+                    width={200}
+                    height={200}
+                  />
                   <p className="text-gray-600">Rajshree Plaza,</p>
                   <p className="text-gray-600">
                     L.B.S Road, Ghatkopar(W), Mumbai
@@ -423,13 +522,15 @@ export default function QuotationPage() {
                 </div>
               </div>
               <div className=" text-right py-4">
-                <h2 className="text-xl font-semibold mb-4">Estimated Quotation</h2>
+                <h2 className="text-xl font-semibold mb-4">
+                  Estimated Quotation
+                </h2>
                 <div className="text-gray-600">
-                <p>{quotation.formId?.name}</p>
-                <p>{quotation.formId?.email}</p>
-                <p>{quotation.formId?.phoneNumber}</p>
-                <p>{quotation.formId?.propertyName}</p>
-                <p>Dated: {new Date().toLocaleDateString()}</p>
+                  <p>{quotation.formId?.name}</p>
+                  <p>{quotation.formId?.email}</p>
+                  <p>{quotation.formId?.phoneNumber}</p>
+                  <p>{quotation.formId?.propertyName}</p>
+                  <p>Dated: {new Date().toLocaleDateString()}</p>
                 </div>
                 <p className="mt-2 text-amber-600 font-medium">
                   Valid for {daysRemaining} days (until{" "}
@@ -438,7 +539,6 @@ export default function QuotationPage() {
               </div>
             </div>
           </CardContent>
-
         </Card>
 
         {Object.entries(

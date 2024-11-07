@@ -3,12 +3,16 @@ import {
   ParallaxProvider,
   Carousel,
   ParallaxBanner,
-  Typography,
 } from "@/store/tailwindcomp";
+
+import slider1 from "@/public/images/slider1.jpg"
+import slider2 from "@/public/images/slider2.jpg"
+import slider3 from "@/public/images/slider3.jpg"
 
 import React from "react";
 import SliderBtn from "./SliderBtn";
 import { IconButton } from "@material-tailwind/react";
+
 
 const HeroSlider = () => {
   return (
@@ -77,36 +81,36 @@ const HeroSlider = () => {
           </IconButton>
         )}
       >
-        <ParallaxBanner
-          layers={[
-            {
-              image:
-                "https://telkitchens.in/srckchn/uploads/2022/03/12-scaled.jpg",
-              speed: -20,
-            },
-          ]}
-          className="aspect-[2/1] h-screen"
-        >
-          <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-            <div className="slide-up flex flex-col items-center justify-center w-4/4 text-center mt-28  md:w-3/4 md:mt-0">
-              <h1 className="mb-5 text-white md:pt-24 text-2xl md:text-4xl lg:text-5xl xl:text-6xl">
-                Elegant Oak Wardrobe Collection
-              </h1>
-              <p className="mb-12 px-12 lg:w-3/4 text-white opacity-90">
-                Discover timeless elegance with our oak wardrobes, crafted for
-                those who value both style and functionality. Perfect for
-                organizing your space while adding a touch of sophistication to
-                any room.
-              </p>
-              <SliderBtn />
+          <ParallaxBanner
+            layers={[
+              {
+                image:
+                slider1.src,
+                speed: -20,
+              },
+            ]}
+            className="aspect-[2/1] h-screen"
+          >
+            <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+              <div className="slide-up flex flex-col items-center justify-center w-4/4 text-center mt-28  md:w-3/4 md:mt-0">
+                <h1 className="mb-5 text-white md:pt-24 text-2xl md:text-4xl lg:text-5xl xl:text-6xl">
+                  Elegant Oak Wardrobe Collection
+                </h1>
+                <p className="mb-12 px-12 lg:w-3/4 text-white opacity-90">
+                  Discover timeless elegance with our oak wardrobes, crafted for
+                  those who value both style and functionality. Perfect for
+                  organizing your space while adding a touch of sophistication to
+                  any room.
+                </p>
+                <SliderBtn />
+              </div>
             </div>
-          </div>
-        </ParallaxBanner>
+          </ParallaxBanner>
         <ParallaxBanner
           layers={[
             {
               image:
-                "https://royal-room.com/upload/iblock/329/32968a52c65806792e01e467122f2ed9.jpg",
+              slider2.src,
               speed: -20,
             },
           ]}
@@ -130,7 +134,7 @@ const HeroSlider = () => {
           layers={[
             {
               image:
-                "https://i.pinimg.com/originals/57/b2/4b/57b24b1aabc5fc8d0f6f66c58ee0c313.jpg",
+              slider3.src,
               speed: -20,
             },
           ]}

@@ -58,6 +58,11 @@ const pricing = {
       size: "3ft X 3ft",
       description: "1 drawer with base unit and 1 shelf",
     },
+    None: {
+      price: 0,
+      size: "",
+      description: "No items selected for this room",
+    },
   },
   Kitchen: {
     "L Shape": {
@@ -90,6 +95,11 @@ const pricing = {
       description:
         "Single platform Kitchen with Base unit on frame and shutters includes 3 SS drawers and 1 SS masala pullout",
     },
+    None: {
+      price: 0,
+      size: "",
+      description: "No items selected for this room",
+    },
   },
   MasterBedroom: {
     Wardrobe: {
@@ -97,6 +107,60 @@ const pricing = {
       size: "6X7",
       description:
         "2 drawer, 5 shelves and hanging rod, Internal White Laminate",
+    },
+    "Lofts on Wardrobe": {
+      price: 10700,
+      size: "6X2",
+      description: "Lofts above wardrobe",
+    },
+    "Wardrobe + Lofts": {
+      price: 73700,
+      size: "6X7",
+      description: "4 doors on frame",
+    },
+    Bed: {
+      price: 42000,
+      size: "5X6",
+      description: "Queen size Hydraulic lift-up bed",
+    },
+    "Bed Side Tables": {
+      price: 13300,
+      size: "1.5ft X 2",
+      description: "Wall mounted side table with drawer Qty 2",
+    },
+    Dresser: {
+      price: 17000,
+      size: "2ft X 4ft",
+      description:
+        "Base unit with shutters and 6inch dept wall unit with mirror",
+    },
+    Vanity: {
+      price: 7200,
+      size: "2ft X 2ft",
+      description: "Base Unit with Shutters",
+    },
+    Study: {
+      price: 16200,
+      size: "3ft X 2.5ft",
+      description: "2 drawer study unit with 3 wall mounted shelwes",
+    },
+    None: {
+      price: 0,
+      size: "",
+      description: "No items selected for this room",
+    },
+  },
+  MasterBedroom2: {
+    Wardrobe: {
+      price: 63000,
+      size: "6X7",
+      description:
+        "2 drawer, 5 shelves and hanging rod, Internal White Laminate",
+    },
+    "Wardrobe + Lofts": {
+      price: 73700,
+      size: "6X7",
+      description: "4 doors on frame",
     },
     "Lofts on Wardrobe": {
       price: 10700,
@@ -124,8 +188,18 @@ const pricing = {
       size: "2ft X 2ft",
       description: "Base Unit with Shutters",
     },
-    Study: { price: 0, size: "0ft X 0ft", description: "Add Description" },
+    Study: {
+      price: 16200,
+      size: "3ft X 2.5ft",
+      description: "2 drawer study unit with 3 wall mounted shelwes",
+    },
+    None: {
+      price: 0,
+      size: "",
+      description: "No items selected for this room",
+    },
   },
+
   CommonBedroom: {
     Wardrobe: {
       price: 63000,
@@ -154,7 +228,16 @@ const pricing = {
       description:
         "Base unit with shutters and 6inch dept wall unit with mirror",
     },
-    Study: { price: 0, size: "0ft X 0ft", description: "Add Description" },
+    Study: {
+      price: 16200,
+      size: "3ft X 2.5ft",
+      description: "2 drawer study unit with 3 wall mounted shelwes",
+    },
+    None: {
+      price: 0,
+      size: "",
+      description: "No items selected for this room",
+    },
   },
   FalseCeilingElectrical: {
     "Fire pipe Boxing": {
@@ -176,16 +259,22 @@ const pricing = {
       price: 0,
       description: "We will contact you for custom design requirements",
     },
+    None: {
+      price: 0,
+      size: "",
+      description: "No items selected for this room",
+    },
   },
 };
 
 const options = {
   "1 BHK": {
     LivingRoom: ["TV Unit", "Sofa", "Crockery Unit", "Shoe Rack", "Console"],
-    Kitchen: ["L Shape", "U Shape", "|| Shape", "G Shape", "| Shape"],
+    Kitchen: ["L Shape", "U Shape", "|| Shape", "G Shape", "| Shape", "None"],
     MasterBedroom: [
       "Wardrobe",
       "Lofts on Wardrobe",
+      "Wardrobe + Lofts",
       "Bed",
       "Bed Side Tables",
       "Dresser",
@@ -199,15 +288,17 @@ const options = {
         "Basic",
         "Peripheral",
         "Custom Design",
+        "None",
       ],
     },
   },
   "2 BHK": {
     LivingRoom: ["TV Unit", "Sofa", "Crockery Unit", "Shoe Rack", "Console"],
-    Kitchen: ["L Shape", "U Shape", "|| Shape", "G Shape", "| Shape"],
+    Kitchen: ["L Shape", "U Shape", "|| Shape", "G Shape", "| Shape", "None"],
     MasterBedroom: [
       "Wardrobe",
       "Lofts on Wardrobe",
+      "Wardrobe + Lofts",
       "Bed",
       "Bed Side Tables",
       "Dresser",
@@ -229,15 +320,27 @@ const options = {
         "Basic",
         "Peripheral",
         "Custom Design",
+        "None",
       ],
     },
   },
   "3 BHK": {
     LivingRoom: ["TV Unit", "Sofa", "Crockery Unit", "Shoe Rack", "Console"],
-    Kitchen: ["L Shape", "U Shape", "|| Shape", "G Shape", "| Shape"],
+    Kitchen: ["L Shape", "U Shape", "|| Shape", "G Shape", "| Shape", "None"],
     MasterBedroom: [
       "Wardrobe",
       "Lofts on Wardrobe",
+      "Wardrobe + Lofts",
+      "Bed",
+      "Bed Side Tables",
+      "Dresser",
+      "Study",
+      "Vanity",
+    ],
+    MasterBedroom2: [
+      "Wardrobe",
+      "Lofts on Wardrobe",
+      "Wardrobe + Lofts",
       "Bed",
       "Bed Side Tables",
       "Dresser",
@@ -252,15 +355,6 @@ const options = {
       "Dresser",
       "Study",
     ],
-    MasterBedroom2: [
-      "Wardrobe",
-      "Lofts on Wardrobe",
-      "Bed",
-      "Bed Side Tables",
-      "Dresser",
-      "Study",
-      "Vanity",
-    ],
     Services: {
       WholeHousePainting: ["Enter Carpet Area"],
       FalseCeilingElectrical: [
@@ -268,6 +362,7 @@ const options = {
         "Basic",
         "Peripheral",
         "Custom Design",
+        "None",
       ],
     },
   },
@@ -464,7 +559,9 @@ router.post("/submit", async (req, res) => {
 
 router.get("/quotation/:quotationId", async (req, res) => {
   try {
-    const quotation = await Quotation.findById(req.params.quotationId).populate("formId");
+    const quotation = await Quotation.findById(req.params.quotationId).populate(
+      "formId"
+    );
     if (!quotation) {
       return res.status(404).json({ error: "Quotation not found" });
     }

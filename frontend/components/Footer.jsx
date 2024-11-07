@@ -71,14 +71,14 @@ const Footer = () => {
                 <FaFacebook />
               </Link>
 
-              <Link
+              {/* <Link
                 href="https://www.linkedin.com/in/your-linkedin-profile"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white text-xl"
               >
                 <FaLinkedin />
-              </Link>
+              </Link> */}
 
               <Link
                 href="https://www.instagram.com/warsto_ind/"

@@ -695,7 +695,7 @@ export default function MultiStepForm() {
                             </h4>
                             <div className="space-y-2">
                               <Checkbox
-                              color="danger"
+                                color="danger"
                                 isSelected={wholePaintingSelected}
                                 onValueChange={(selected) => {
                                   setWholePaintingSelected(selected);
@@ -746,7 +746,7 @@ export default function MultiStepForm() {
                                 Electrical
                               </motion.div>
                             )}
-                            <div className="grid grid-cols-2  md:grid-cols-4  gap-4">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                               {options.FalseCeilingElectrical?.map((option) => (
                                 <div
                                   key={option}
@@ -785,7 +785,7 @@ export default function MultiStepForm() {
                                     </div>
                                   )}
                                   <Checkbox
-                                  color="danger"
+                                    color="danger"
                                     isSelected={
                                       selectedOptions[
                                         "FalseCeilingElectrical"
@@ -796,37 +796,18 @@ export default function MultiStepForm() {
                                         "FalseCeilingElectrical"
                                       ]?.includes("None") && option !== "None"
                                     }
+                                    onChange={(e) => {
+                                      e.stopPropagation();
+                                      handleOptionChange(
+                                        "FalseCeilingElectrical",
+                                        option
+                                      );
+                                    }}
                                   >
                                     {option}
                                   </Checkbox>
                                 </div>
                               ))}
-                              <div
-                                onClick={() =>
-                                  handleOptionChange(
-                                    "FalseCeilingElectrical",
-                                    "None"
-                                  )
-                                }
-                                className={`cursor-pointer p-4 rounded-lg border transition-all ${
-                                  selectedOptions[
-                                    "FalseCeilingElectrical"
-                                  ]?.[0] === "None"
-                                    ? "border-gray-500 bg-gray-50"
-                                    : "border-gray-200 hover:border-gray-300"
-                                }`}
-                              >
-                                <Checkbox
-                                color="danger"
-                                  isSelected={
-                                    selectedOptions[
-                                      "FalseCeilingElectrical"
-                                    ]?.[0] === "None"
-                                  }
-                                >
-                                  None
-                                </Checkbox>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -905,6 +886,7 @@ export default function MultiStepForm() {
                             .map((option) => (
                               <div
                                 key={option}
+                                onClick={() => handleOptionChange(room, option)}
                                 className={`cursor-pointer p-4 rounded-lg border transition-all ${
                                   selectedOptions[room]?.includes(option)
                                     ? "border-[#ef4665] bg-[#ef466515] text-black"
@@ -914,12 +896,7 @@ export default function MultiStepForm() {
                                 }`}
                               >
                                 {optionImages[room]?.[option] && (
-                                  <div
-                                    className="w-full h-32 relative mb-2"
-                                    onClick={() =>
-                                      handleOptionChange(room, option)
-                                    }
-                                  >
+                                  <div className="w-full h-32 relative mb-2">
                                     <Image
                                       src={optionImages[room][option]}
                                       alt={option}
@@ -928,28 +905,21 @@ export default function MultiStepForm() {
                                     />
                                   </div>
                                 )}
-                                <label
-                                  className="flex items-center cursor-pointer w-full"
-                                  onClick={(e) => {
+                                <Checkbox
+                                  color="danger"
+                                  isSelected={selectedOptions[room]?.includes(
+                                    option
+                                  )}
+                                  isDisabled={selectedOptions[room]?.includes(
+                                    "None"
+                                  )}
+                                  onChange={(e) => {
                                     e.stopPropagation();
                                     handleOptionChange(room, option);
                                   }}
                                 >
-                                  <Checkbox
-                                  color="danger"
-                                    isSelected={selectedOptions[room]?.includes(
-                                      option
-                                    )}
-                                    isDisabled={selectedOptions[room]?.includes(
-                                      "None"
-                                    )}
-                                    onChange={() =>
-                                      handleOptionChange(room, option)
-                                    }
-                                  >
-                                    {option}
-                                  </Checkbox>
-                                </label>
+                                  {option}
+                                </Checkbox>
                               </div>
                             ))}
                           <div
@@ -962,7 +932,7 @@ export default function MultiStepForm() {
                             }`}
                           >
                             <Checkbox
-                            color="danger"
+                              color="danger"
                               isSelected={selectedOptions[room]?.includes(
                                 "None"
                               )}
@@ -1242,7 +1212,7 @@ export default function MultiStepForm() {
               Cancel
             </Button>
             <Button
-            className="bg-[#ef4665] text-white"
+              className="bg-[#ef4665] text-white"
               onPress={handleAddOption}
               isLoading={isSubmitting}
             >

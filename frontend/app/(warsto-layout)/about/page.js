@@ -1,4 +1,8 @@
 import React from "react";
+import about1 from "@/public/images/about1.jpg"
+import about2 from "@/public/images/about2.webp"
+import about3 from "@/public/images/about3.webp"
+import about4 from "@/public/images/about4.webp"
 
 const AboutUs = () => {
   return (
@@ -11,7 +15,7 @@ const AboutUs = () => {
           className="relative h-[350px] lg:h-[500px] w-full bg-local lg:bg-fixed  bg-cover lg:bg-contain md:bg-contain bg-no-repeat lg:bg-no-repeat	"
           style={{
             backgroundImage:
-              "url('https://www.gpwih.com/wp-content/uploads/2018/04/mirrored-wardrobes-with-drawers-pertaining-to-widely-used-mirrored-wardrobe-style-home-design-ideas-elegant-mirrored.jpg')",
+              `url(${about1.src})`,
           }}
         ></div>
         <div className="w-full">
@@ -65,7 +69,7 @@ const AboutUs = () => {
           className="relative h-[350px] lg:h-[500px] bg-local lg:bg-fixed w-full bg-cover lg:bg-contain md:bg-contain bg-no-repeat lg:bg-repeat"
           style={{
             backgroundImage:
-              "url('https://bigfoto.name/photo/uploads/posts/2023-04/1680432957_bigfoto-name-p-shkaf-mebelnii-36.jpg')",
+              `url(${about2.src})`,
           }}
         ></div>
       </div>
@@ -75,7 +79,7 @@ const AboutUs = () => {
           className="relative h-[350px] lg:h-[500px] bg-local lg:bg-fixed w-full bg-cover lg:bg-contain md:bg-contain bg-no-repeat lg:bg-repeat"
           style={{
             backgroundImage:
-              "url('https://extra-interiors.com/foto/233474/shkafy_v_stenakh_spalni_dizain_33.webp')",
+              `url(${about3.src})`,
           }}
         ></div>
         <div className="w-full">
@@ -128,7 +132,7 @@ const AboutUs = () => {
           className="relative h-[350px] lg:h-[500px] bg-local lg:bg-fixed w-full bg-cover lg:bg-contain md:bg-contain bg-no-repeat lg:bg-repeat "
           style={{
             backgroundImage:
-              "url('https://avatars.mds.yandex.net/get-altay/6315042/2a0000017fd0cc908a0283a1379765c525e5/XXL')",
+              `url(${about4.src})`,
           }}
         ></div>
       </div>

@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { Button, Typography } from "@/store/tailwindcomp";
 import React from "react";
+import shopnow from "@/public/images/shopnowbanner.jpg";
+
+
 
 const ShopNowBanner = () => {
   return (
@@ -8,7 +11,7 @@ const ShopNowBanner = () => {
       className="relative h-[500px] w-full bg-cover bg-center"
       style={{
         backgroundImage:
-          "url('https://image.architonic.com/img_pro2-4/125/2447/interniarmadio-4-b.jpg')",
+          `url(${shopnow.src})`,
         backgroundAttachment: "fixed",
       }}
     >

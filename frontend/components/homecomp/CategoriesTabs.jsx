@@ -9,6 +9,15 @@ import {
   TabsHeader,
   Typography,
 } from "@/store/tailwindcomp";
+
+import Opulence from "@/public/images/opulance.jpg"
+import NexGen from "@/public/images/nexgen.jpg"
+import SmartSpace from "@/public/images/smartspace.jpg"
+import StyleShift from "@/public/images/styleshifts.jpg"
+import Sovereign from "@/public/images/soveregin.jpg"
+import Ornet from "@/public/images/ornet.jpg"
+
+
 import Link from "next/link";
 
 const CategoriesTabs = () => {
@@ -18,7 +27,7 @@ const CategoriesTabs = () => {
     {
       label: "Opulence",
       value: "Opulence",
-      desc: `https://plus.unsplash.com/premium_photo-1723901829993-56f5582053e9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
+      desc: Opulence.src,
       heading: "Discover Luxury in Every Detail",
       content:
         "The Opulence collection redefines elegance with its luxurious designs and high-quality materials. Each wardrobe is meticulously crafted to provide not only ample storage but also a statement piece that enhances your home’s aesthetic. Experience the perfect blend of style and functionality with our opulent solutions.",
@@ -26,7 +35,7 @@ const CategoriesTabs = () => {
     {
       label: "NexGen",
       value: "NexGen",
-      desc: `https://images.unsplash.com/photo-1672137233327-37b0c1049e77?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
+      desc: NexGen.src,
       heading: "Embrace the Future of Furniture",
       content:
         "NexGen wardrobes offer cutting-edge designs tailored for modern living. Featuring smart technology and innovative materials, this collection prioritizes convenience without compromising on style. Elevate your space with versatile storage solutions that adapt to your lifestyle and needs.",
@@ -34,7 +43,7 @@ const CategoriesTabs = () => {
     {
       label: "SmartSpace",
       value: "SmartSpace",
-      desc: `https://i.pinimg.com/originals/b4/6a/96/b46a9668152d8b375fe666061426120f.jpg`,
+      desc: SmartSpace.src,
       heading: "Maximize Efficiency with Intelligent Design",
       content:
         "SmartSpace wardrobes are engineered to optimize storage while maintaining a sleek appearance. Designed for urban living, these modular units help you utilize every inch of available space efficiently. Experience the harmony of form and function with our intelligent wardrobe solutions.",
@@ -42,7 +51,7 @@ const CategoriesTabs = () => {
     {
       label: "StyleShift",
       value: "StyleShift",
-      desc: `https://мебель-по-цене-фабрики.рф/thumb/2/QV7jPtF6Ncr4_PxSzY-zgQ/r/d/vstroennyj-shkaf-kupe-modest.jpg`,
+      desc: StyleShift.src,
       heading: "Transform Your Space with Versatile",
       content:
         "The StyleShift collection embodies adaptability, allowing you to personalize your wardrobe to suit your evolving tastes. With a range of styles and configurations, these wardrobes ensure that your storage solutions can shift and grow with you, making them perfect for any home environment.",
@@ -50,7 +59,7 @@ const CategoriesTabs = () => {
     {
       label: "Sovereign",
       value: "Sovereign",
-      desc: `https://mebelkakmebel.ru/assets/images/products/17596/raspashnoy-shkaf-ipaumirin.jpg`,
+      desc: StyleShift.src,
       heading: "Experience Regal Storage Solutions",
       content:
         "Sovereign wardrobes bring a touch of royalty to your living space. Crafted with premium materials and intricate detailing, these wardrobes offer a sophisticated storage solution that reflects your refined taste. Enjoy a perfect balance of grandeur and practicality with Sovereign.",
@@ -58,7 +67,7 @@ const CategoriesTabs = () => {
     {
       label: "Ornet",
       value: "Ornet",
-      desc: `https://www.gpwih.com/wp-content/uploads/2018/03/solid-wood-fitted-wardrobes-doors-with-regard-to-recent-interior-furniture-alluring-solid-wood-bedroom-wardrobe-with-slide.jpg`,
+      desc: Ornet.src,
       heading: "Sustainable Elegance for Modern Living",
       content:
         "The Ornet collection focuses on eco-friendly materials and sustainable practices without sacrificing style. These wardrobes are designed for the environmentally conscious consumer, combining modern aesthetics with responsible craftsmanship. Elevate your home while making a positive impact on the planet with Ornet.",
